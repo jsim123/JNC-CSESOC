@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Patient List</h1>
+
+	{% if not current_user.get_patients() %}
+		No patients currently
+	{% endif %}
+	{% for patient in current_user.get_patients() %}
+		<p><a href="{{url_for('history', user=patient.get_name())}}">{{patient.get_name()}}</a> {{patient.get_email()}}</p><br>
+	{% endfor %}
+
+{% endblock %}

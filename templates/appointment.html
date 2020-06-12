@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+	<h1>Patient Profile</h1>
+		Name: {{user.get_name()}}
+		<br>Medications: {% for meds in user.get_meds() %}{{meds}} {% endfor%}
+		<br>Tasks:
+		<ol>{% for task in user.tasks %}<li>{{task}}</li>{% endfor%}</ol>
+		<form  method="post">
+		<input type=text name=task placeholder="Add task">
+		<p><button type="submit">Submit</button>
+		</form>
+	<h1>Record Appointment</h1>
+        <form  method="post">
+        <input type=text name=date placeholder="date">
+        <input type=text name=meds placeholder="meds">
+        <input type=text name=notes placeholder="notes">
+		<p><button type="submit">Submit</button>
+		<br>-----------------------------------------------------------
+
+{% endblock %}

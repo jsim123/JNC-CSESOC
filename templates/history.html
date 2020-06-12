@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+	<h1>Patient Profile</h1>
+		Name: {{user.get_name()}}
+		<br>Medications: {% for meds in user.get_meds() %}{{meds}} {% endfor%}
+		<br>Tasks:
+		<ol>{% for task in user.tasks %}<li>{{task}}</li>{% endfor%}</ol>
+		<form  method="post">
+		<input type=text name=task placeholder="Add task">
+		<p><button type="submit">Submit</button>
+		</form>
+	<a href = "{{url_for('new_appointment',user = user.get_name())}}"><button type="submit">Record An Appointment</button></a>
+	<h1>Past Appointments</h1>
+	{% for appointment in user.get_appoint_history() %}
+		<p>Date: {{appointment.date}}
+		<br>Medications prescribed: {{appointment.meds}}
+		<br>Provider's Notes: {{appointment.notes}}
+		<br>-----------------------------------------------------------
+	{% endfor %}
+
+{% endblock %}

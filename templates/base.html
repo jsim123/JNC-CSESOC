@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% block head %}{% endblock %}
+		<b>Menu</b>
+		<br><a href = "{{url_for('home')}}">Home</a>
+		<a href = "{{url_for('patients')}}">Your Patients</a>
+		<a href="{{ url_for('logout') }}">Logout</a><p>
+	</head>
+	<body>
+			{% block content %}{% endblock %}
+	</body>
+
+</html>

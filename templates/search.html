@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+	<h1>Search Engine</h1>
+	
+		<form method = GET>
+	     <div style="margin: 10px 0px">
+	     	<input name = "keywords" placeholder = "Type your query here"/>
+
+			<p><input type = "radio" name = "option" value = "hccname" checked = "checked"> Healthcare centre name
+	     	<br><input type = "radio" name = "option" value = "pname"> Provider name
+	     	<br><input type = "radio" name = "option" value = "service"> Service type
+	     	<br><input type = "radio" name = "option" value = "suburb"> Suburb/Area
+
+	     	<div style="margin: 10px 0px">
+			<button type="submit">Submit</button>
+		</div>
+		</form>
+
+{% if showTable == True %}
+	{% if not sList %}
+		<p> Sorry your search bore no results
+	{% else %}
+		{% if sType == "HCC" %}
+			<p> Results:
+			<table id="Search Results">
+			<tr><th>Name</th>
+			<th>Type</th>
+			<th>Suburb</th>
+			<th>Rating</th></tr>
+			{% for x in sList %}
+				<tr><td><a href="{{url_for('profile', p_type="hcc", name=x.get_name())}}">{{x.get_name()}}</a></td>
+				<td>{{x.get_HC_type()}}</td>
+				<td>{{x.get_address()}}</td>
+				<td>{{x.get_rating()}}</td></tr>
+			{% endfor %}
+		{% else %}
+			<p> Results:
+			<table id="Search Results">
+			<tr><th>Name</th>
+			<th>Provider Number</th>
+			<th>Profession Type</th>
+			<th>Rating</th></tr>
+			{% for x in sList %}
+				<tr><td><a href="{{url_for('profile', p_type="hcp", name=x.get_provider_num())}}">{{x.get_f_name()}} {{x.get_l_name()}}</a></td>
+				<td>{{x.get_provider_num()}}</td>
+				<td>{{x.get_health_prof()}}</td>
+				<td>{{x.get_rating()}}</td></tr>
+			{% endfor %}
+		{% endif %}
+	{% endif %}
+{% endif %}
+
+{% endblock %}

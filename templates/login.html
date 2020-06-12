@@ -1,0 +1,14 @@
+<h1>JNC Health System</h1>
+
+ <form action="/" method="post">
+ 	<p>Username:
+    <br><input type=text name=username placeholder="Username">
+    <p>Password:
+    <br><input type=password name=password placeholder="Password">
+    <p><input type=submit value=Login>
+</form>
+{%if sucess == False%}
+  {{error}}
+
+
+{% endif %}
